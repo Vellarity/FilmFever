@@ -1,4 +1,3 @@
-import React from "react";
 import AVATAR  from "./users.png"
 import Image from 'next/image'
 
