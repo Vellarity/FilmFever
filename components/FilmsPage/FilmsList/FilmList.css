@@ -1,0 +1,13 @@
+.FilmsPage__FilmsList__container::before{
+    content: "";
+    display: block;
+    background: rgba(0,0,0,.08);
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    width: calc(100% - 40px);
+    top: 0;
+    -webkit-transition: opacity .15s ease-out;
+    transition: opacity .15s ease-out;
+}
