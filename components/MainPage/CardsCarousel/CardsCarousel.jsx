@@ -52,12 +52,14 @@ export const CardsCarousel = () => {
 	};
 	return(
 		<>
-			<span className='px-14 text-2xl font-bold py-3'>Билеты в кино</span>
+			<span className='px-14 text-3xl font-bold py-3 mb-3'>Билеты в кино</span>
+      <div className='bg-mainGrey rounded-2xl pt-3 filter shadow-mainSh'>
         <Slider {...settings}>
           {list.map(item =>{
 						return <Card key={item}/>
 					})}
         </Slider>
+      </div>
 		</>
 	)
 }

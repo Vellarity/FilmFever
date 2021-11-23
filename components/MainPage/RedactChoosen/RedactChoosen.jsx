@@ -44,12 +44,14 @@ export const RedactCarousel = () => {
 	};
 	return(
 		<>
-			<span className='px-14 text-2xl font-bold py-3'>Выбор редакции</span>
-			<Slider {...settings}>
-				{list.map(item =>{
-					return <Card key={item}/>
-				})}
-      </Slider>
+			<span className='px-14 text-3xl font-bold py-3 my-3 ml-auto'>Выбор редакции</span>
+			<div className='bg-mainGrey rounded-2xl py-4 filter shadow-mainSh'>
+				<Slider {...settings}>
+					{list.map(item =>{
+						return <Card key={item}/>
+					})}
+      	</Slider>
+			</div>
 		</>
 	)
 }

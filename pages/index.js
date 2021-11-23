@@ -7,8 +7,7 @@ import { TableRecieved } from '../components/MainPage/TableRecieved/TableRecieve
 
 export default function Home() {
   return (
-    <div className="max-w-screen-xl flex flex-row mx-auto h-full">
-      <Sidepanel />
+    <div className="max-w-screen-xl flex flex-row mx-auto h-full z-0 mt-7 rounded-3xl">
       
       <div className='flex flex-col w-full'>
         <CardsCarousel/>
