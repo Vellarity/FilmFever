@@ -1,11 +1,15 @@
 import 'tailwindcss/tailwind.css'
 import {BasicLayout} from '../components/Layouts/BasicLayout'
+import '../public/App.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <BasicLayout>
-      <Component {...pageProps} />
-    </BasicLayout>
+    <div className='body'>
+      <BasicLayout>
+        <Component {...pageProps} />
+      </BasicLayout>
+    </div>
+    
     )
     
 }
