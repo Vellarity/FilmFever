@@ -20,10 +20,10 @@ export const Navbar = () => {
 	}
 
 	return(
-		<div className="h-20 bg-mainBlue px-6 z-50">
+		<div className="h-20 bg-mainWarm px-6 z-50">
 			<div className='max-w-screen-xl mx-auto flex items-center h-full justify-between'>
 				<div className='flex w-1/2 items-center'>
-					<span className='text-4xl font-bold'>FilmFever</span>
+					<span className='text-4xl font-bold text-oceanView'>Film</span><span className='text-4xl font-bold text-mainPunsh'>Fever</span>
 					<input className="bg-mainGrey text-mainWhite outline-none placeholder-mainWhite mx-10 mt-1 w-1/2 h-8 pl-3 rounded-md text-lg mr-8" placeholder="Название фильма, сериала"/>
 					<button className="text-mainWhite bg-mainGrey rounded-lg text-lg mt-1 w-24 h-8">Найти</button>
 				</div>
