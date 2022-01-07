@@ -3,13 +3,8 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        "mainBlack":'#1b1b1b',
         "mainGrey":'#FCFCFC',
-        "mainBlue":'#9999FF',
-        "mainSand":'#FFCC66',
-        "accentBlue":'#CCCCFF',
-        "accentSand":'#FFFFCC',
-
+        "mainBlack":'#1b1b1b',
         "darkBlue":"#444C5C",
         "mainPunsh":"#CE5A57",
         "oceanView":"#78A5A3",
