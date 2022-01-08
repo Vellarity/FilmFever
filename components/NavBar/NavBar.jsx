@@ -30,7 +30,7 @@ export const Navbar = () => {
 						{userInfo ? 
 						<>
 							<span className='text-2xl text-mainBlack font-semibold mr-3'>{userInfo.userName}</span>
-							<Image className='rounded-full right-3' width='60px' height='60px' src={userInfo.avatar} onClick={() =>{setUserInfo(null)}} />
+							<Image className='rounded-full right-3' width='60px' height='60px' src={userInfo.avatar} onClick={() =>{setUserInfo(null); localStorage.removeItem('userToken')}} />
 						</>
 						 : 
 						<>
