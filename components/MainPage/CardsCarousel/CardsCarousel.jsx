@@ -1,7 +1,4 @@
 import Image from "next/image";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-
 
 export const Card = ({item}) => {
   const {name, genre, rating, imageID, year, id} = item

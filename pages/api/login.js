@@ -25,7 +25,6 @@ handler.post(async(req, res) =>{
     const DBuser = await req.db.collection('Users').findOne({'userName':user.userName, 'password':user.password})
     if (DBuser){
       const token = jwt.sign({userName:DBuser.userName, role: DBuser.role, id: DBuser.id}, process.env.JWT_SECRET, { expiresIn: '2d' })
-      console.log(DBuser)
       res.json({
         user:{
           id: DBuser.id,
