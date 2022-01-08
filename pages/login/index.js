@@ -1,14 +1,16 @@
 import Router from "next/router"
-import { useState } from "react"
-
-
+import { useState, useContext } from "react"
+import { userContext } from "../_app"
 
 function Login(){
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 	const [wrong, setWrong] = useState(false)
 
+  const {setUserInfo} = useContext(userContext)
+
   async function UserLogin(){
+
 		const body = {
 			'userName':userName,
 			'password':password
@@ -24,8 +26,9 @@ function Login(){
 		}
 		else{
 			const router = Router
+      setUserInfo(res.user)
+      localStorage.setItem('userToken', res.token)
 			router.push('/')
-			console.log(res)
 		}
 	}
   
