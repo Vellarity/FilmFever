@@ -1,17 +1,18 @@
-import Cardimg from "./allah.png"
 import Image from "next/image"
+import { useState } from "react"
 
 const FilmItem = ({item, index}) => {
     const {name, imageID, year, genre, rating, id} = item
+    const [color, setColor] = useState(setRandom())
 
-    const setRandom = () =>{
+    function setRandom(){
         let colors = ['bg-oceanView', 'bg-mainWarm','bg-darkBlue']
         let color = Math.round(Math.random() * 2);
         return colors[color]
     }
 
     return(
-        <div className={`flex px-10 py-4 items-start relative rounded-lg ${setRandom()} my-2 cursor-pointer items-center`}>
+        <div className={`flex px-10 py-4 items-start relative rounded-lg ${color} my-2 cursor-pointer items-center`}>
             <div className="text-black text-xl font-bold py-1 mr-10">{index + 1}</div>
             <div className="relative">
                 <Image width="92px" height="140px" className="rounded" src={`/posters/${imageID}.png`}/>
@@ -38,6 +39,7 @@ const FilmItem = ({item, index}) => {
 }
 
 export const FilmsList= ({list}) => {
+
     return(
         <div className="flex flex-col bg-mainPunsh p-3 rounded-2xl">
             {list.map((item, index) =>{

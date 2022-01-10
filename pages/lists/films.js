@@ -1,10 +1,10 @@
 import { FilmsList } from '../../components/FilmsPage/FilmsList/FilmsList';
 import { FilmsFilter } from '../../components/FilmsPage/FilmsFilter/FilmsFilter';
+import axios from 'axios';
 
 export async function getStaticProps(){
   const res = await fetch('http://localhost:3000/api/films')
   const data = await res.json()
-  console.log(data)
   if (!data) {
     return {
       redirect: {

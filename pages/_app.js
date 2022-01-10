@@ -8,26 +8,6 @@ export const userContext = createContext({
   setUserInfo:() => {}
 })
 
-/* export async function getStaticProps(){
-  const token = localStorage.getItem("userToken")
-
-  if (token){
-    const req = await fetch('http://localhost:3000/api/login',{
-      method: 'POST',
-      headers: {
-        authorization:'Bearer ' + token
-      }
-    })
-    const user = await req.json()
-    console.log(user)
-    return{
-      props:{
-        user
-      }
-    }
-  }
-} */
-
 function App({ Component, pageProps, user }) {
   const [userInfo, setUserInfo] = useState(user ? user : null)
 
