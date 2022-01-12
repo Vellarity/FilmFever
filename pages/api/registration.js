@@ -1,6 +1,14 @@
 import nextConnect from 'next-connect';
 import middleware, { connectDB } from '../../lib/mongodb';
 
+export const config = {
+  api: {
+      bodyParser: {
+          sizeLimit: '4mb' // Set desired value here
+      }
+  }
+}
+
 const handler = nextConnect()
 handler.use(middleware)
 handler.post(async(req, res) =>{
