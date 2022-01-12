@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
+import { useRouter } from "next/router"
 
 export default function Registration(){
   const [userName, setUserName] = useState('')
@@ -8,8 +9,13 @@ export default function Registration(){
 
   async function UserReg(){
     const reader = new FileReader()
-    const avatar = reader.readAsDataURL(fileName)
 
+    reader.readAsDataURL(fileName)
+    let avatar
+    reader.onload = function(event) {
+      avatar = event.target.result
+    };
+    
 		const body = {
 			'userName':userName,
 			'password':password,
@@ -20,6 +26,14 @@ export default function Registration(){
       body: JSON.stringify(body)
     })
 		const res = await req.json()
+    
+    if(res.data){
+      const router = useRouter()
+      router.push('/')
+    }
+    else{
+      alert(res.error)
+    }
   }
 
   function playEgg(){
@@ -30,7 +44,7 @@ export default function Registration(){
   return(
     <>
       <div className="flex flex-col justify-center items-center h-screen">
-        <form className="bg-mainPunsh p-4 rounded-2xl flex-col flex w-1/4">
+        <div className="bg-mainPunsh p-4 rounded-2xl flex-col flex w-1/4">
           <span className="text-3xl font-bold text-mainGrey mb-3">Регистрация</span>
           <span className="text-xl font-bold text-mainGrey">Image</span>
           {fileName ? <img className="my-3 rounded-xl" src={URL.createObjectURL(fileName)} width={256} height={256} alt="where"/> : <div className="w-32 h-32 border-4 border-dotted my-3 flex justify-center items-center text-8xl font-bold text-mainGrey pb-5">+</div>}
@@ -44,7 +58,7 @@ export default function Registration(){
           <input required type='password' className="h-11 mb-5 mt-1 pl-3 rounded-2xl text-xl focus:outline-mainWarm" placeholder="Insert your password..." onChange={(event) => {setPassword(event.target.value)}}/>
 
           <button className="self-end bg-mainWarm rounded-xl px-3 py-2 text-mainBlack text-xl font-semibold hover:text-oceanView hover:bg-mainBlack" onClick={() =>{UserReg()}}>Регистрация</button>
-        </form>
+        </div>
       </div>
       <img src='/egg/egg.jpg' width={50} height={50} layout="fixed" onClick={() =>{playEgg()}} className="rounded-full absolute bottom-6 right-6 cursor-pointer"/>
     </>
