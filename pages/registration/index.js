@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
-import { useRouter } from "next/router"
+import Router from "next/router"
 
 export default function Registration(){
   const [userName, setUserName] = useState('')
@@ -11,29 +11,26 @@ export default function Registration(){
     const reader = new FileReader()
 
     reader.readAsDataURL(fileName)
-    let avatar
-    reader.onload = function(event) {
-      avatar = event.target.result
+    reader.onload = async function(event) {
+      const body = {
+        'userName':userName,
+        'password':password,
+        'avatar':event.target.result
+      }
+      const req = await fetch('/api/registration',{
+        method: 'POST',
+        body: JSON.stringify(body)
+      })
+      const res = await req.json()
+      
+      if(res.data){
+        const router = Router
+        router.push('/')
+      }
+      else{
+        alert(res.error)
+      }
     };
-    
-		const body = {
-			'userName':userName,
-			'password':password,
-      'avatar':avatar
-		}
-    const req = await fetch('/api/registration',{
-      method: 'POST',
-      body: JSON.stringify(body)
-    })
-		const res = await req.json()
-    
-    if(res.data){
-      const router = useRouter()
-      router.push('/')
-    }
-    else{
-      alert(res.error)
-    }
   }
 
   function playEgg(){

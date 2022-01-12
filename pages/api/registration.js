@@ -7,7 +7,7 @@ handler.post(async(req, res) =>{
   const data = JSON.parse(req.body)
   try {
     const count = await req.db.collection('Users').countDocuments()
-    if (req.db.collection('Users').findOne({userName:data.userName}) !== null){
+    if (await req.db.collection('Users').findOne({userName:data.userName}) !== null){
       throw new Error('Пользователь с таким никнеймом уже существует')
     }
     else{
