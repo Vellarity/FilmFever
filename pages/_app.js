@@ -14,7 +14,7 @@ function App({ Component, pageProps, user }) {
   useEffect(async() =>{
     const token = localStorage.getItem("userToken")
     if (token){
-      const req = await fetch('http://localhost:3000/api/login',{
+      const req = await fetch('/api/login',{
         method: 'POST',
         headers: {
           authorization:'Bearer ' + token

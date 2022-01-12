@@ -15,7 +15,7 @@ function Login(){
 			'userName':userName,
 			'password':password
 		}
-    const req = await fetch('http://localhost:3000/api/login',{
+    const req = await fetch('/api/login',{
       method: 'POST',
       body: JSON.stringify(body)
     })

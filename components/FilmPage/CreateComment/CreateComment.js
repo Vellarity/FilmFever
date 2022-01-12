@@ -13,7 +13,7 @@ export function CreateComment({filmID}){
       "userID":userInfo.id,
       "filmID":filmID,
     }
-    const req = await fetch('http://localhost:3000/api/film/comments', {
+    const req = await fetch('/api/film/createComment', {
       method:'POST',
       body:JSON.stringify(body)
     })

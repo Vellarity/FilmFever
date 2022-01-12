@@ -1,20 +1,23 @@
-import { GetStaticProps } from 'next';
-import Head from 'next/head'
 import { CardsCarousel } from '../components/MainPage/CardsCarousel/CardsCarousel';
 import { RedactCarousel } from '../components/MainPage/RedactChoosen/RedactChoosen';
 import { TableRecieved } from '../components/MainPage/TableRecieved/TableRecieved';
 
+import { connectDB } from '../lib/mongodb';
+
 export async function getStaticProps(){
-  const res = await fetch('http://localhost:3000/api/main')
-  const data = await res.json()
-  if (!data) {
-    return {
-      redirect: {
-        destination: '/api/main',
-        permanent: false,
-      },
-    }
-  }
+  const req = await connectDB()
+  let data = {}
+  const bestTop = await req.collection('Movie').find({}).sort({'rating':-1}).limit(10).toArray()
+  const boxUSA = await req.collection('Movie').find().sort({'boxUSA':-1}).limit(5).toArray()
+  const boxRU = await req.collection('Movie').find().sort({'boxRU':-1}).limit(5).toArray()
+  const boxWRLD = await req.collection('Movie').find().sort({'boxWRLD':-1}).limit(5).toArray()
+
+  data.bestTop = bestTop
+  data.boxUSA = boxUSA
+  data.boxRU = boxRU
+  data.boxWRLD = boxWRLD
+  data = JSON.parse(JSON.stringify(data))
+  
   return{
     props:{
       data
@@ -23,7 +26,6 @@ export async function getStaticProps(){
 }
 
 function Home({data}) {
-
   return (
     <div className="max-w-screen-xl flex flex-row mx-auto h-full z-0 mt-7 rounded-3xl">
       

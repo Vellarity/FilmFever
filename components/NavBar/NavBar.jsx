@@ -36,7 +36,7 @@ export const Navbar = () => {
 						<>
 							<a href='/login' className='text-2xl font-semibold text-mainPunsh mr-2'>Вход</a>
 							<span className='text-2xl font-semibold text-mainBlack'> | </span>
-							<a className='text-2xl font-semibold text-oceanView ml-2'>Регистрация</a>
+							<a href='/registration' className='text-2xl font-semibold text-oceanView ml-2'>Регистрация</a>
 						</>
 						}
 					</div>

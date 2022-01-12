@@ -8,16 +8,22 @@ handler.post(async(req, res) =>{
   if (req.headers.authorization){
     const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, process.env.JWT_SECRET, async function(err, decoded){
-      const DBuser = await req.db.collection('Users').findOne({'userName':decoded.userName, 'id':decoded.id})
-      res.json({
-        user:{
-          id: DBuser.id,
-          userName: DBuser.userName,
-          role: DBuser.role,
-          avatar: DBuser.avatar
-        },
-        token:token
-      })
+      if (err){
+        res.json({warning:"Вы не авторизованы"})
+      }
+      else{
+        const DBuser = await req.db.collection('Users').findOne({'userName':decoded.userName, 'id':decoded.id})
+        res.json({
+          user:{
+            id: DBuser.id,
+            userName: DBuser.userName,
+            role: DBuser.role,
+            avatar: DBuser.avatar
+          },
+          token:token
+        })
+      }
+      
     })
   }
   else{

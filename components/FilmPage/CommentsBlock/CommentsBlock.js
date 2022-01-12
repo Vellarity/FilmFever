@@ -1,5 +1,6 @@
+import { useRouter } from "next/router"
 import Image from "next/image"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Allah from './allah.png'
 
 function CommentItem({commentar}){
@@ -18,7 +19,31 @@ function CommentItem({commentar}){
   )
 }
 
-export default function CommentsBlock({list}){
+export default function CommentsBlock(){
+	const router = useRouter()
+  const [list, setList] = useState([])
+  const [numbers, setNumbers] = useState([0,3])
+
+  async function getComments(){
+    const data = {
+      "from":numbers[0],
+      "to":3,
+      "filmID":router.query
+    }
+
+    const req = await fetch('/api/film/comments',{
+      method:'POST',
+      body:JSON.stringify(data)
+    })
+    const res = await req.json()
+    setList([...list, ...res.comments])
+    setNumbers([numbers[0]+3,numbers[1]+3])
+  }
+
+  useEffect(async function(){
+    getComments()
+  },[])
+
   return(
     list.length > 0 ? 
       <div className="w-full bg-darkBlue rounded-xl mt-6 p-3 text-mainGrey flex-col flex">
@@ -26,6 +51,7 @@ export default function CommentsBlock({list}){
         {list.map((item, index) =>{
           return <CommentItem commentar={item} key={index}/>
         })}
+				<div className="self-center text-xl font-semibold text-mainWarm cursor-pointer mt-4 hover:text-oceanView duration-150" onClick={() =>{getComments()}}>Ещё...</div>
       </div>
     :
       <div className="mt-6 text-3xl text-mainGrey font-bold">Комментариев ещё нет... Станьте первым!</div>
